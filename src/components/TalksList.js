@@ -1,29 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { fetchTalksData } from '../reducers/talks';
+
+// Components
+import { ListedTalk } from './ListedTalk';
 
 export const TalksList = () => {
-  const [data, setData] = useState([]);
-
-  const getData = () => {
-    fetch('https://tedtalks-by-karin.herokuapp.com/')
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
-        setData(json);
-      });
-  };
-
   useEffect(() => {
-    getData();
+    fetchTalksData();
   }, []);
-
-  console.log(data);
 
   return (
     <>
-      {data &&
+      <button onClick={() => fetchTalksData()}>knapp</button>
+      {/* {data &&
         data.map((talk) => {
-          return <p>{talk.name}</p>;
-        })}
+          return <ListedTalk key={talk.url} talk={talk} />;
+        })} */}
       <p>hej</p>
     </>
   );
