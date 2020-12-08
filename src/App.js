@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { TalksList } from './components/TalksList';
 
 export const App = () => {
   return (
     <div>
-      Find me in src/app.js!
+      <TalksList />
     </div>
-  )
-}
+  );
+};
