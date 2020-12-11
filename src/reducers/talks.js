@@ -8,17 +8,15 @@ export const talks = createSlice({
   },
   reducers: {
     setTalksData: (state, action) => {
-      console.log('hej!');
-      state.talks = action.payload;
+      state.talks = action.payload.data;
     },
   },
 });
 
-export const fetchTalksData = () => {
-  console.log('initialized!');
+export const fetchTalksData = (url) => {
   return (dispatch) => {
     dispatch(ui.actions.setLoading(true));
-    fetch('https://tedtalks-by-karin.herokuapp.com/', {
+    fetch(url, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +24,6 @@ export const fetchTalksData = () => {
     })
       .then((res) => res.json())
       .then((json) => {
-        console.log('data fetched!');
         dispatch(talks.actions.setTalksData(json));
       });
     dispatch(ui.actions.setLoading(false));
